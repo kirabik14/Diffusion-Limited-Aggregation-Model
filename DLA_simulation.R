@@ -22,36 +22,22 @@ for(addends in 1:(distance -1)) {
   boundary_values <- append(boundary_values, boundary_points)
 }
 
-outer_limit= floor(1.25 *distance)
-inner1_limit= ceiling(0.5 *distance)
-inner2_limit= ceiling(0.25 *distance)
-
 
 ##Boundary Restriction
+limits= ceiling(distance* c(1.1, 0.8, 0.6, 0.4, 0.2))
 check_limit <- function(point) {
+  i = 1
+  while(limits[i] >= Mod(point) && i <= length(limits)) {
+    i= i +1
+  }
+  current_limit= limits[i-1]
   probable_steps= step_value
-  if(Mod(point) <= inner2_limit) {
-    for(step in step_value) {
-      new_point= point +step
-      if(Mod(new_point) >= inner2_limit) {
-        probable_steps <- probable_steps[probable_steps != step]
-      }
+  for(step in step_value) {
+    new_point= point +step
+    if(Mod(new_point) >= current_limit) {
+      probable_steps <- probable_steps[probable_steps != step]
     }
-  } else if(Mod(point) <= inner1_limit) {
-    for(step in step_value) {
-      new_point= point +step
-      if(Mod(new_point) >= inner1_limit) {
-        probable_steps <- probable_steps[probable_steps != step]
-      }
-    }
-  } else if(Mod(point) <= outer_limit) {
-    for(step in step_value) {
-      new_point= point +step
-      if(Mod(new_point) >= outer_limit) {
-        probable_steps <- probable_steps[probable_steps != step]
-      }
-    }
-  } 
+  }
   return(probable_steps)
 }
 
