@@ -8,7 +8,7 @@ There can be various algorithms, but here I am giving one which I will use in th
 1. Initialize the step length, end cluster(*possible stop points*) and end points(*actual points where walk ended*), stickiness(*probability of attaching to a cluster*); along with the boundary(*starting distance*) from which we start the random walks.
 2. Now, let's say, we start a random walk from an **uniformly** chosen point from the boundary.
 3. We set an **outer limit**, such that if we see the random walker getting in the opposite direction from the end cluster, we deflect it back inside the *limit radius circle*, thus increasing the probability of it reaching the end cluster.
-4. We set **inner limits** (*two of them*), to restrict the movement of the walker outside the *limit radius circle* once it came into the circle, thus limiting the points it can travel to and increasing the probability of it to reach the end cluster.
+4. We set **inner limits** (*five of them*), to restrict the movement of the walker outside the *limit radius circle* once it came into the circle, thus limiting the points it can travel to and increasing the probability of it to reach the end cluster.
 5. We also add a sticking probability which determines, if and when a particle approaches the end cluster, will it attach to the cluster or continue the walk to reach another cluster
 6. After the random walk finishes, we update the endpoints and the end cluster as follows:
    - the ending point is appended to the end points list.
